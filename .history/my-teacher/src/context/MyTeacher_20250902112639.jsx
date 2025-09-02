@@ -1,0 +1,3 @@
+import { createContext } from "react";
+
+const MyTeacherContext=createContext(null)

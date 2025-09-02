@@ -1,0 +1,39 @@
+
+import { createBrowserRouter, RouterProvider } from "react-router-dom"
+// import { Layout } from "./component/Layout/Layout"
+// import { ErrorPage } from "./component/Layout/ErrorPage"
+// import { Home } from "./pages/Home"
+// import { About } from "./pages/About"
+// import { Contact } from "./pages/Contact"
+export const App=()=>{
+  const router=createBrowserRouter([
+    {
+      path:"/",
+      element:<Layout/>,
+      errorElement:<ErrorPage/>,
+      // children:[
+      //   {
+      //     path:'/',
+      //     element:<Home/>
+      //   },
+      //    {
+      //     path:'/about',
+      //     element:<About/>
+      //   },
+      //   {
+      //     path:'/contact',
+      //     element:<Contact/>
+      //   }
+
+      // ]
+
+
+    }
+  ])
+  return(
+    <>
+    <h1>Hello im app</h1>
+       {/* <RouterProvider router={router}/> */}
+    </>
+  )
+}
