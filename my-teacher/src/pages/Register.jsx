@@ -52,37 +52,49 @@ export const Register = () => {
     <>
       <style>
         {`
+          :root {
+            --primary-dark: #121212;
+            --secondary-dark: #1e1e1e;
+            --accent-purple: #bb86fc;
+            --accent-teal: #03dac6;
+            --text-light: #e0e0e0;
+            --card-surface: #1e1e1e;
+          }
+          
           .auth-container {
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: var(--primary-dark);
             padding: 20px;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
           }
           
           .auth-card {
-            background: white;
+            background: linear-gradient(145deg, var(--card-surface) 0%, #252525 100%);
             border-radius: 16px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
             width: 100%;
             max-width: 420px;
             overflow: hidden;
             position: relative;
+            border: 1px solid #2d2d2d;
           }
           
           .auth-header {
-            background: linear-gradient(135deg, #4361ee 0%, #3a0ca3 100%);
-            color: white;
+            background: linear-gradient(135deg, var(--secondary-dark) 0%, #252525 100%);
+            color: var(--text-light);
             padding: 30px 20px;
             text-align: center;
+            border-bottom: 1px solid #2d2d2d;
           }
           
           .auth-header h2 {
             margin: 0;
             font-size: 28px;
             font-weight: 700;
+            color: var(--accent-teal);
           }
           
           .auth-header p {
@@ -96,13 +108,13 @@ export const Register = () => {
           }
           
           .auth-error {
-            background: #ffebee;
-            color: #c62828;
+            background: rgba(198, 40, 40, 0.1);
+            color: #ff5252;
             padding: 12px;
             border-radius: 8px;
             margin-bottom: 20px;
             font-size: 14px;
-            border-left: 4px solid #c62828;
+            border-left: 4px solid #ff5252;
           }
           
           .auth-form {
@@ -119,27 +131,33 @@ export const Register = () => {
           .form-label {
             font-weight: 600;
             margin-bottom: 8px;
-            color: #333;
+            color: var(--accent-teal);
             font-size: 14px;
           }
           
           .form-input {
             padding: 14px;
-            border: 1px solid #ddd;
+            background: var(--secondary-dark);
+            border: 1px solid #2d2d2d;
             border-radius: 8px;
             font-size: 16px;
             transition: all 0.3s ease;
+            color: var(--text-light);
           }
           
           .form-input:focus {
             outline: none;
-            border-color: #4361ee;
-            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+            border-color: var(--accent-purple);
+            box-shadow: 0 0 0 3px rgba(187, 134, 252, 0.2);
+          }
+          
+          .form-input::placeholder {
+            color: #888;
           }
           
           .password-strength {
             height: 4px;
-            background: #eee;
+            background: #2d2d2d;
             border-radius: 2px;
             margin-top: 8px;
             overflow: hidden;
@@ -156,7 +174,7 @@ export const Register = () => {
             border-radius: 8px;
             font-size: 16px;
             font-weight: 600;
-            cursor: pointer;
+            cursor: button;
             transition: all 0.3s ease;
             display: flex;
             justify-content: center;
@@ -165,25 +183,25 @@ export const Register = () => {
           }
           
           .btn-primary {
-            background: #4361ee;
-            color: white;
+            background: var(--accent-purple);
+            color: var(--primary-dark);
           }
           
           .btn-primary:hover {
-            background: #3a0ca3;
+            background: var(--accent-teal);
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.4);
+            box-shadow: 0 5px 15px rgba(3, 218, 198, 0.4);
           }
           
           .btn-google {
-            background: #db4437;
+            background: #4285f4;
             color: white;
           }
           
           .btn-google:hover {
-            background: #c53929;
+            background: #357ae8;
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(219, 68, 55, 0.4);
+            box-shadow: 0 5px 15px rgba(66, 133, 244, 0.4);
           }
           
           .btn:disabled {
@@ -205,7 +223,7 @@ export const Register = () => {
             content: '';
             flex: 1;
             height: 1px;
-            background: #ddd;
+            background: #2d2d2d;
           }
           
           .auth-divider span {
@@ -215,25 +233,27 @@ export const Register = () => {
           .auth-footer {
             text-align: center;
             margin-top: 25px;
-            color: #777;
+            color: var(--text-light);
+            opacity: 0.8;
             font-size: 14px;
           }
           
           .auth-link {
-            color: #4361ee;
+            color: var(--accent-purple);
             text-decoration: none;
             font-weight: 600;
           }
           
           .auth-link:hover {
             text-decoration: underline;
+            color: var(--accent-teal);
           }
           
           .loading-spinner {
             width: 20px;
             height: 20px;
             border: 2px solid transparent;
-            border-top: 2px solid white;
+            border-top: 2px solid var(--primary-dark);
             border-radius: 50%;
             animation: spin 1s linear infinite;
           }

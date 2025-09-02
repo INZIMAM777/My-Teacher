@@ -1,5 +1,4 @@
-// pages/Home.js
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useFirebase } from "../context/MyTeacher";
 import { useNavigate } from "react-router-dom";
 
@@ -14,20 +13,13 @@ export const Home = () => {
     deleteTeacher,
     searchTerm,
     setSearchTerm,
-    filterSubject,
-    setFilterSubject,
   } = useFirebase();
-
-  const [subjects] = useState([
-    "SPM", "Mathematics", "Physics", "Chemistry", "Biology",
-    "English", "History", "Geography", "Computer Science", "Art",
-  ]);
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    getLists({ subject: filterSubject || null });
-  }, [filterSubject]);
+    getLists();
+  }, []);
 
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this teacher?")) {
@@ -45,8 +37,12 @@ export const Home = () => {
 
   const handleSearchSubmit = (e) => {
     if (e.key === 'Enter') {
-      getLists({ subject: filterSubject || null });
+      getLists();
     }
+  };
+
+  const handleSearchClick = () => {
+    getLists();
   };
 
   return (
@@ -54,34 +50,44 @@ export const Home = () => {
       <style>
         {`
           :root {
-            --primary: #4361ee;
-            --secondary: #3f37c9;
-            --success: #4cc9f0;
-            --danger: #f72585;
-            --warning: #f8961e;
-            --light: #f8f9fa;
-            --dark: #212529;
-            --gray: #6c757d;
-            --light-gray: #e9ecef;
+            --primary: #bb86fc;
+            --secondary: #985eff;
+            --success: #03dac6;
+            --danger: #cf6679;
+            --warning: #ffb74d;
+            --light: #2c2c2c;
+            --dark: #e0e0e0;
+            --gray: #a0a0a0;
+            --light-gray: #333333;
+            --card-bg: #1e1e1e;
+            --body-bg: #121212;
+          }
+          
+          body {
+            background-color: var(--body-bg);
+            color: #e0e0e0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
           }
           
           .home-container {
             max-width: 1400px;
-            margin: 20px auto;
-            padding: 20px;
+            margin: 0 auto;
+            padding: 16px;
+            background-color: var(--body-bg);
           }
 
           .page-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 30px;
+            margin-bottom: 24px;
             flex-wrap: wrap;
-            gap: 15px;
+            gap: 16px;
           }
 
           .page-title {
-            font-size: 2.2rem;
+            font-size: 1.75rem;
             font-weight: 700;
             color: var(--dark);
             margin: 0;
@@ -89,30 +95,36 @@ export const Home = () => {
 
           .controls {
             display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
             margin-bottom: 20px;
+            background: #2c2c2c;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--light-gray);
+            transition: all 0.3s;
+          }
+
+          .controls:focus-within {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(187, 134, 252, 0.2);
           }
 
           .search-box {
             position: relative;
             flex: 1;
-            min-width: 250px;
           }
 
           .search-input {
             width: 100%;
-            padding: 12px 15px 12px 40px;
-            border: 1px solid var(--light-gray);
-            border-radius: 8px;
+            padding: 14px 15px 14px 45px;
+            border: none;
             font-size: 1rem;
-            transition: all 0.3s;
+            background-color: transparent;
+            color: #e0e0e0;
+            outline: none;
           }
 
-          .search-input:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+          .search-input::placeholder {
+            color: var(--gray);
           }
 
           .search-icon {
@@ -123,13 +135,19 @@ export const Home = () => {
             color: var(--gray);
           }
 
-          .filter-select {
-            padding: 12px 15px;
-            border: 1px solid var(--light-gray);
-            border-radius: 8px;
-            font-size: 1rem;
-            background-color: white;
-            min-width: 180px;
+          .search-btn {
+            padding: 14px 20px;
+            border: none;
+            background-color: var(--primary);
+            color: #121212;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+          }
+
+          .search-btn:hover {
+            background-color: var(--secondary);
           }
 
           .btn {
@@ -147,7 +165,7 @@ export const Home = () => {
 
           .btn-primary {
             background-color: var(--primary);
-            color: white;
+            color: #121212;
           }
 
           .btn-primary:hover {
@@ -160,42 +178,45 @@ export const Home = () => {
           }
 
           .btn-danger:hover {
-            background-color: #d11466;
+            background-color: #b85565;
           }
 
           .btn-warning {
             background-color: var(--warning);
-            color: white;
+            color: #121212;
           }
 
           .btn-warning:hover {
-            background-color: #e4850d;
+            background-color: #ffa726;
           }
 
           .btn-sm {
             padding: 8px 12px;
             font-size: 0.875rem;
+            border-radius: 6px;
           }
 
           .teacher-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
             margin-top: 20px;
           }
 
           .teacher-card {
-            background: #ffffff;
+            background: var(--card-bg);
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
             transition: all 0.3s ease;
             position: relative;
+            border: 1px solid #333;
           }
 
           .teacher-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+            border-color: #555;
           }
 
           .teacher-img-container {
@@ -227,6 +248,7 @@ export const Home = () => {
 
           .teacher-card:hover .teacher-actions {
             opacity: 1;
+            z-index: 2;
           }
 
           .teacher-details {
@@ -243,6 +265,7 @@ export const Home = () => {
             margin: 8px 0;
             color: var(--gray);
             display: flex;
+            flex-wrap: wrap;
           }
 
           .teacher-details strong {
@@ -261,20 +284,20 @@ export const Home = () => {
           }
 
           .status-available {
-            background-color: rgba(76, 201, 240, 0.15);
-            color: #4cc9f0;
+            background-color: rgba(3, 218, 198, 0.15);
+            color: #03dac6;
           }
 
           .status-busy {
-            background-color: rgba(247, 37, 133, 0.15);
-            color: #f72585;
+            background-color: rgba(207, 102, 121, 0.15);
+            color: #cf6679;
           }
 
           .loading-spinner {
             display: inline-block;
             width: 20px;
             height: 20px;
-            border: 3px solid rgba(67, 97, 238, 0.3);
+            border: 3px solid rgba(187, 134, 252, 0.3);
             border-radius: 50%;
             border-top-color: var(--primary);
             animation: spin 1s ease-in-out infinite;
@@ -286,34 +309,35 @@ export const Home = () => {
 
           .empty-state {
             text-align: center;
-            padding: 40px 20px;
+            padding: 60px 20px;
             color: var(--gray);
+            grid-column: 1 / -1;
           }
 
-          .empty-state svg {
+          .empty-state-icon {
             font-size: 3rem;
             margin-bottom: 15px;
             color: var(--light-gray);
           }
 
           .stats-container {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 25px;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
           }
 
           .stat-card {
-            background: white;
-            padding: 20px;
+            background: var(--card-bg);
+            padding: 16px;
             border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-            flex: 1;
-            min-width: 200px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            border: 1px solid #333;
+            text-align: center;
           }
 
           .stat-value {
-            font-size: 2rem;
+            font-size: 1.75rem;
             font-weight: 700;
             color: var(--primary);
             margin: 0;
@@ -322,25 +346,160 @@ export const Home = () => {
           .stat-label {
             color: var(--gray);
             margin: 5px 0 0 0;
+            font-size: 0.9rem;
           }
 
+          /* Mobile-specific improvements */
           @media (max-width: 768px) {
+            .home-container {
+              padding: 12px;
+            }
+            
             .page-header {
               flex-direction: column;
-              align-items: flex-start;
+              align-items: stretch;
+              margin-bottom: 20px;
+            }
+            
+            .page-title {
+              font-size: 1.5rem;
+              text-align: center;
             }
             
             .controls {
               flex-direction: column;
+              border-radius: 12px;
+              max-width: 100%;
+              margin-bottom: 16px;
+            }
+            
+            .search-box {
               width: 100%;
             }
             
-            .search-box, .filter-select {
+            .search-input {
+              padding: 16px 15px 16px 45px;
+              font-size: 16px; /* Prevents zoom on iOS */
+            }
+            
+            .search-btn {
               width: 100%;
+              justify-content: center;
+              border-radius: 0 0 12px 12px;
+              padding: 16px;
             }
             
             .teacher-grid {
               grid-template-columns: 1fr;
+              gap: 16px;
+            }
+            
+            .teacher-img-container {
+              height: 180px;
+            }
+            
+            .teacher-details {
+              padding: 16px;
+            }
+            
+            .teacher-details h3 {
+              font-size: 1.25rem;
+            }
+            
+            .teacher-details p {
+              flex-direction: column;
+              margin: 6px 0;
+            }
+            
+            .teacher-details strong {
+              min-width: unset;
+              margin-bottom: 4px;
+            }
+            
+            .status-badge {
+              margin-left: 0;
+              margin-top: 4px;
+              align-self: flex-start;
+            }
+            
+            .teacher-actions {
+              opacity: 1; /* Always show on mobile for usability */
+              flex-direction: column;
+              gap: 8px;
+            }
+            
+            .stats-container {
+              grid-template-columns: repeat(2, 1fr);
+              gap: 12px;
+            }
+            
+            .stat-card {
+              padding: 12px;
+            }
+            
+            .stat-value {
+              font-size: 1.5rem;
+            }
+            
+            .btn {
+              width: 100%;
+              justify-content: center;
+              padding: 14px 16px;
+            }
+          }
+
+          @media (max-width: 480px) {
+            .stats-container {
+              grid-template-columns: 1fr;
+            }
+            
+            .teacher-img-container {
+              height: 160px;
+            }
+            
+            .page-title {
+              font-size: 1.35rem;
+            }
+          }
+
+          /* Extra small devices */
+          @media (max-width: 360px) {
+            .home-container {
+              padding: 8px;
+            }
+            
+            .teacher-details {
+              padding: 12px;
+            }
+            
+            .teacher-details h3 {
+              font-size: 1.15rem;
+            }
+          }
+
+          /* Tablet adjustments */
+          @media (min-width: 769px) and (max-width: 1024px) {
+            .teacher-grid {
+              grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+            
+            .stats-container {
+              grid-template-columns: repeat(3, 1fr);
+            }
+          }
+
+          /* Touch device improvements */
+          @media (hover: none) {
+            .teacher-card:hover {
+              transform: none;
+            }
+            
+            .teacher-actions {
+              opacity: 1;
+            }
+            
+            .teacher-card:hover .teacher-img {
+              transform: none;
             }
           }
         `}
@@ -380,36 +539,25 @@ export const Home = () => {
           </div>
         </div>
 
-        {/* Controls */}
+        {/* Search Controls */}
         <div className="controls">
           <div className="search-box">
             <span className="search-icon">🔍</span>
             <input
               type="text"
               className="search-input"
-              placeholder="Search teachers by name or subject..."
+              placeholder="Search teachers by name, subject, cabin..."
               value={searchTerm}
               onChange={handleSearch}
               onKeyPress={handleSearchSubmit}
             />
           </div>
           
-          <select 
-            className="filter-select"
-            value={filterSubject}
-            onChange={(e) => setFilterSubject(e.target.value)}
-          >
-            <option value="">All Subjects</option>
-            {subjects.map(subject => (
-              <option key={subject} value={subject}>{subject}</option>
-            ))}
-          </select>
-          
           <button 
-            className="btn btn-primary"
-            onClick={() => getLists({ subject: filterSubject || null })}
+            className="search-btn"
+            onClick={handleSearchClick}
           >
-            Apply Filters
+            Search
           </button>
         </div>
 
@@ -424,7 +572,7 @@ export const Home = () => {
           <div style={{ 
             color: "var(--danger)", 
             padding: "15px", 
-            backgroundColor: "rgba(247, 37, 133, 0.1)",
+            backgroundColor: "rgba(207, 102, 121, 0.1)",
             borderRadius: "8px",
             marginBottom: "20px",
             display: "flex",
@@ -472,7 +620,7 @@ export const Home = () => {
                       <span className="status-badge status-available">Available</span>
                     )}
                   </p>
-                  <p><strong>Cabin No:</strong> {t["Cabin.no"]}</p>
+                  <p><strong>Cabin No:</strong> {t.Cabin?.no || "N/A"}</p>
                   <p><strong>Contact:</strong> {t.Contact}</p>
                   <p><strong>Email:</strong> {t.Email || "N/A"}</p>
                   <p><strong>Education:</strong> {t.Education || "N/A"}</p>
@@ -482,10 +630,10 @@ export const Home = () => {
                       ? t.FreeTime.toDate().toLocaleString()
                       : t.FreeTime || "Not specified"}
                   </p>
-                  {t.Expertise && (
+                  {t.Expertise && t.Expertise.length > 0 && (
                     <p>
                       <strong>Expertise:</strong> 
-                      {t.Expertise.join(", ")}
+                      {Array.isArray(t.Expertise) ? t.Expertise.join(", ") : t.Expertise}
                     </p>
                   )}
                 </div>
@@ -494,7 +642,7 @@ export const Home = () => {
           ) : (
             !loading && (
               <div className="empty-state">
-                <div>👨‍🏫</div>
+                <div className="empty-state-icon">👨‍🏫</div>
                 <h3>No teachers found</h3>
                 <p>Try adjusting your search or add a new teacher</p>
               </div>

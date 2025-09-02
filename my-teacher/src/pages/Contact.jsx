@@ -30,63 +30,43 @@ export const Contact = () => {
       <style>
         {`
           :root {
-            --primary: #4361ee;
-            --secondary: #3a0ca3;
-            --accent: #f72585;
-            --light: #f8f9fa;
-            --dark: #212529;
-            --gray: #6c757d;
-            --light-gray: #e9ecef;
-            --success: #4cc9f0;
+            --primary-dark: #121212;
+            --secondary-dark: #1e1e1e;
+            --accent-purple: #bb86fc;
+            --accent-teal: #03dac6;
+            --text-light: #e0e0e0;
+            --card-surface: #1e1e1e;
           }
           
-          /* Contact Page Styles */
+          * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+          }
+          
+          body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-light);
+            background-color: var(--primary-dark);
+          }
+          
           .contact-container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 40px 20px;
           }
           
-          .section-title {
-            font-size: 2.2rem;
-            margin-bottom: 30px;
-            color: var(--dark);
-            position: relative;
-            padding-bottom: 15px;
-          }
-          
-          .section-title:after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 4px;
-            background: var(--primary);
-            margin-top: 15px;
-            border-radius: 2px;
-          }
-          
           /* Header Section */
           .contact-header {
             text-align: center;
             margin-bottom: 60px;
-            padding: 60px 0;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            padding: 40px 0;
+            background: linear-gradient(135deg, var(--secondary-dark) 0%, #2d2d2d 100%);
             border-radius: 16px;
-            color: white;
-            box-shadow: 0 10px 30px rgba(67, 97, 238, 0.15);
-            position: relative;
-            overflow: hidden;
-          }
-          
-          .contact-header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-            transform: rotate(30deg);
+            color: var(--text-light);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid #2d2d2d;
           }
           
           .contact-header h1 {
@@ -94,7 +74,7 @@ export const Contact = () => {
             font-weight: 800;
             margin-bottom: 20px;
             letter-spacing: -0.5px;
-            position: relative;
+            color: var(--accent-teal);
           }
           
           .contact-header p {
@@ -102,15 +82,14 @@ export const Contact = () => {
             max-width: 700px;
             margin: 0 auto;
             opacity: 0.9;
-            position: relative;
           }
           
           /* Contact Content */
           .contact-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            margin-bottom: 80px;
+            gap: 40px;
+            margin: 60px 0;
           }
           
           @media (max-width: 900px) {
@@ -121,16 +100,17 @@ export const Contact = () => {
           
           /* Contact Form */
           .contact-form {
-            background: white;
-            padding: 40px;
+            background: linear-gradient(145deg, var(--card-surface) 0%, #252525 100%);
+            padding: 30px;
             border-radius: 16px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            border: 1px solid #2d2d2d;
           }
           
           .form-title {
             font-size: 2rem;
             margin-bottom: 30px;
-            color: var(--dark);
+            color: var(--accent-teal);
             position: relative;
           }
           
@@ -139,7 +119,7 @@ export const Contact = () => {
             display: block;
             width: 60px;
             height: 4px;
-            background: var(--primary);
+            background: var(--accent-purple);
             margin-top: 15px;
             border-radius: 2px;
           }
@@ -152,25 +132,27 @@ export const Contact = () => {
             display: block;
             margin-bottom: 8px;
             font-weight: 600;
-            color: var(--dark);
+            color: var(--text-light);
           }
           
           .form-input,
           .form-textarea {
             width: 100%;
             padding: 15px;
-            border: 1px solid var(--light-gray);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 8px;
             font-family: inherit;
             font-size: 1rem;
             transition: all 0.3s ease;
+            color: var(--text-light);
           }
           
           .form-input:focus,
           .form-textarea:focus {
             outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.1);
+            border-color: var(--accent-purple);
+            box-shadow: 0 0 0 3px rgba(187, 134, 252, 0.1);
           }
           
           .form-textarea {
@@ -179,8 +161,8 @@ export const Contact = () => {
           }
           
           .submit-btn {
-            background: var(--primary);
-            color: white;
+            background: var(--accent-purple);
+            color: var(--primary-dark);
             padding: 15px 35px;
             border: none;
             border-radius: 50px;
@@ -188,14 +170,14 @@ export const Contact = () => {
             font-size: 1.1rem;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
+            box-shadow: 0 5px 15px rgba(187, 134, 252, 0.3);
             display: inline-block;
           }
           
           .submit-btn:hover {
-            background: var(--secondary);
+            background: var(--accent-teal);
             transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(67, 97, 238, 0.4);
+            box-shadow: 0 8px 20px rgba(3, 218, 198, 0.4);
           }
           
           /* Contact Info */
@@ -206,7 +188,7 @@ export const Contact = () => {
           .info-title {
             font-size: 2rem;
             margin-bottom: 30px;
-            color: var(--dark);
+            color: var(--accent-teal);
             position: relative;
           }
           
@@ -215,69 +197,96 @@ export const Contact = () => {
             display: block;
             width: 60px;
             height: 4px;
-            background: var(--primary);
+            background: var(--accent-purple);
             margin-top: 15px;
             border-radius: 2px;
           }
           
           .info-item {
+            background: linear-gradient(145deg, var(--card-surface) 0%, #252525 100%);
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+            border: 1px solid #2d2d2d;
             display: flex;
             align-items: flex-start;
-            margin-bottom: 30px;
-            transition: transform 0.3s ease;
           }
           
           .info-item:hover {
-            transform: translateX(5px);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-color: var(--accent-purple);
           }
           
           .info-icon {
             width: 50px;
             height: 50px;
-            background: rgba(67, 97, 238, 0.1);
+            background: rgba(187, 134, 252, 0.1);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 20px;
-            color: var(--primary);
+            color: var(--accent-purple);
             margin-right: 20px;
             flex-shrink: 0;
+            border: 1px solid rgba(187, 134, 252, 0.2);
           }
           
           .info-content h3 {
             font-size: 1.2rem;
             margin-bottom: 5px;
-            color: var(--dark);
+            color: var(--text-light);
           }
           
           .info-content p {
-            color: var(--gray);
+            color: rgba(224, 224, 224, 0.7);
             line-height: 1.6;
           }
           
           /* Map Section */
           .map-section {
-            margin-bottom: 80px;
+            margin: 60px 0;
+          }
+          
+          .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: var(--accent-teal);
+            position: relative;
+          }
+          
+          .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--accent-purple);
+            margin: 15px auto;
+            border-radius: 2px;
           }
           
           .map-container {
             height: 400px;
             border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            border: 1px solid #2d2d2d;
           }
           
           .map-placeholder {
             height: 100%;
-            background: linear-gradient(45deg, var(--light) 25%, transparent 25%, transparent 75%, var(--light) 75%, var(--light)),
-                        linear-gradient(45deg, var(--light) 25%, transparent 25%, transparent 75%, var(--light) 75%, var(--light));
+            background: linear-gradient(45deg, var(--secondary-dark) 25%, transparent 25%, transparent 75%, var(--secondary-dark) 75%, var(--secondary-dark)),
+                        linear-gradient(45deg, var(--secondary-dark) 25%, transparent 25%, transparent 75%, var(--secondary-dark) 75%, var(--secondary-dark));
             background-size: 20px 20px;
             background-position: 0 0, 10px 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--gray);
+            color: rgba(224, 224, 224, 0.7);
             font-weight: 600;
             flex-direction: column;
           }
@@ -286,29 +295,12 @@ export const Contact = () => {
             content: '📍';
             font-size: 3rem;
             margin-bottom: 20px;
+            color: var(--accent-teal);
           }
           
           /* FAQ Section */
           .faq-section {
-            margin-bottom: 80px;
-          }
-          
-          .faq-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 50px;
-            color: var(--dark);
-            position: relative;
-          }
-          
-          .faq-title:after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 4px;
-            background: var(--primary);
-            margin: 15px auto;
-            border-radius: 2px;
+            margin: 60px 0;
           }
           
           .faq-grid {
@@ -318,32 +310,34 @@ export const Contact = () => {
           }
           
           .faq-item {
-            background: white;
+            background: linear-gradient(145deg, var(--card-surface) 0%, #252525 100%);
             padding: 25px;
             border-radius: 16px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
             transition: all 0.3s ease;
+            border: 1px solid #2d2d2d;
           }
           
           .faq-item:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-color: var(--accent-purple);
           }
           
           .faq-item h3 {
             font-size: 1.3rem;
             margin-bottom: 15px;
-            color: var(--dark);
+            color: var(--text-light);
           }
           
           .faq-item p {
-            color: var(--gray);
+            color: rgba(224, 224, 224, 0.7);
             line-height: 1.6;
           }
           
           /* Support Team Section */
           .support-team {
-            margin: 80px 0;
+            margin: 60px 0;
           }
           
           .team-grid {
@@ -353,23 +347,26 @@ export const Contact = () => {
           }
           
           .team-member {
-            background: white;
+            background: linear-gradient(145deg, var(--card-surface) 0%, #252525 100%);
             border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
             transition: all 0.3s ease;
             text-align: center;
+            border: 1px solid #2d2d2d;
           }
           
           .team-member:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-color: var(--accent-teal);
           }
           
           .member-img {
             width: 100%;
             height: 200px;
             object-fit: cover;
+            filter: grayscale(30%);
           }
           
           .member-info {
@@ -379,11 +376,11 @@ export const Contact = () => {
           .member-name {
             font-size: 1.4rem;
             margin-bottom: 5px;
-            color: var(--dark);
+            color: var(--accent-teal);
           }
           
           .member-role {
-            color: var(--primary);
+            color: var(--accent-purple);
             margin-bottom: 15px;
             font-weight: 500;
           }
@@ -391,11 +388,11 @@ export const Contact = () => {
           .member-contact {
             margin-top: 15px;
             padding-top: 15px;
-            border-top: 1px solid var(--light-gray);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
           }
           
           .member-contact a {
-            color: var(--primary);
+            color: var(--accent-teal);
             text-decoration: none;
             display: block;
             margin-bottom: 5px;
@@ -403,17 +400,18 @@ export const Contact = () => {
           }
           
           .member-contact a:hover {
-            color: var(--secondary);
+            color: var(--accent-purple);
             text-decoration: underline;
           }
           
           /* CTA Section */
           .cta-section {
-            background: var(--light);
+            background: linear-gradient(145deg, var(--secondary-dark) 0%, #252525 100%);
             padding: 80px 0;
             border-radius: 16px;
             text-align: center;
-            margin: 80px 0;
+            margin: 60px 0;
+            border: 1px solid #2d2d2d;
           }
           
           .cta-content {
@@ -424,13 +422,13 @@ export const Contact = () => {
           .cta-title {
             font-size: 2.5rem;
             margin-bottom: 20px;
-            color: var(--dark);
+            color: var(--accent-teal);
           }
           
           .cta-text {
             font-size: 1.2rem;
             margin-bottom: 30px;
-            color: var(--gray);
+            opacity: 0.9;
           }
           
           .cta-buttons {
@@ -442,8 +440,8 @@ export const Contact = () => {
           
           .cta-button {
             display: inline-block;
-            background: var(--primary);
-            color: white;
+            background: var(--accent-purple);
+            color: var(--primary-dark);
             padding: 15px 35px;
             border-radius: 50px;
             text-decoration: none;
@@ -452,33 +450,33 @@ export const Contact = () => {
             transition: all 0.3s ease;
             border: none;
             cursor: pointer;
-            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
+            box-shadow: 0 5px 15px rgba(187, 134, 252, 0.3);
           }
           
           .cta-button.outline {
             background: transparent;
-            color: var(--primary);
-            border: 2px solid var(--primary);
+            color: var(--accent-teal);
+            border: 2px solid var(--accent-teal);
           }
           
           .cta-button:hover {
-            background: var(--secondary);
+            background: var(--accent-teal);
             transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(67, 97, 238, 0.4);
+            box-shadow: 0 8px 20px rgba(3, 218, 198, 0.4);
           }
           
           .cta-button.outline:hover {
-            background: var(--primary);
-            color: white;
+            background: var(--accent-teal);
+            color: var(--primary-dark);
           }
           
           /* Footer */
-          .about-footer {
+          .contact-footer {
             text-align: center;
-            padding: 30px 0;
-            margin-top: 60px;
-            border-top: 1px solid var(--light-gray);
-            color: var(--gray);
+            padding: 40px 0;
+            color: var(--text-light);
+            opacity: 0.7;
+            border-top: 1px solid #2d2d2d;
           }
           
           /* Responsive Design */
@@ -488,7 +486,7 @@ export const Contact = () => {
             }
             
             .section-title {
-              font-size: 1.8rem;
+              font-size: 2rem;
             }
             
             .form-title,
@@ -496,7 +494,6 @@ export const Contact = () => {
               font-size: 1.8rem;
             }
             
-            .faq-title,
             .cta-title {
               font-size: 2rem;
             }
@@ -719,7 +716,7 @@ export const Contact = () => {
         
         {/* FAQ Section */}
         <div className="faq-section">
-          <h2 className="faq-title">Frequently Asked Questions</h2>
+          <h2 className="section-title">Frequently Asked Questions</h2>
           <div className="faq-grid">
             <div className="faq-item">
               <h3>How do I get started with the system?</h3>
@@ -766,7 +763,7 @@ export const Contact = () => {
         </div>
 
         {/* Footer */}
-        <div className="about-footer">
+        <div className="contact-footer">
           <p>© 2023 Teacher Management System. All rights reserved.</p>
         </div>
       </div>

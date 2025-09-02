@@ -4,17 +4,12 @@ export const About = () => {
       <style>
         {`
           :root {
-            --primary: #4361ee;
-            --primary-light: #4895ef;
-            --secondary: #3f37c9;
-            --dark: #212529;
-            --light: #f8f9fa;
-            --gray: #6c757d;
-            --light-gray: #e9ecef;
-            --success: #4cc9f0;
-            --danger: #f72585;
-            --warning: #f8961e;
-            --body-bg: #fafbff;
+            --primary-dark: #121212;
+            --secondary-dark: #1e1e1e;
+            --accent-purple: #bb86fc;
+            --accent-teal: #03dac6;
+            --text-light: #e0e0e0;
+            --card-surface: #1e1e1e;
           }
           
           * {
@@ -26,8 +21,8 @@ export const About = () => {
           body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            color: var(--dark);
-            background-color: var(--body-bg);
+            color: var(--text-light);
+            background-color: var(--primary-dark);
           }
           
           .about-container {
@@ -41,10 +36,11 @@ export const About = () => {
             text-align: center;
             margin-bottom: 60px;
             padding: 40px 0;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            background: linear-gradient(135deg, var(--secondary-dark) 0%, #2d2d2d 100%);
             border-radius: 16px;
-            color: white;
-            box-shadow: 0 10px 30px rgba(67, 97, 238, 0.15);
+            color: var(--text-light);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid #2d2d2d;
           }
           
           .about-header h1 {
@@ -52,6 +48,7 @@ export const About = () => {
             font-weight: 800;
             margin-bottom: 20px;
             letter-spacing: -0.5px;
+            color: var(--accent-teal);
           }
           
           .about-header p {
@@ -70,7 +67,7 @@ export const About = () => {
             text-align: center;
             font-size: 2.5rem;
             margin-bottom: 50px;
-            color: var(--dark);
+            color: var(--accent-teal);
             position: relative;
           }
           
@@ -79,7 +76,7 @@ export const About = () => {
             display: block;
             width: 80px;
             height: 4px;
-            background: var(--primary);
+            background: var(--accent-purple);
             margin: 15px auto;
             border-radius: 2px;
           }
@@ -91,46 +88,55 @@ export const About = () => {
           }
           
           .feature-card {
-            background: white;
+            background: linear-gradient(145deg, var(--card-surface) 0%, #252525 100%);
             padding: 30px;
             border-radius: 16px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
             transition: all 0.3s ease;
             text-align: center;
+            border: 1px solid #2d2d2d;
           }
           
           .feature-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-color: var(--accent-purple);
           }
           
           .feature-icon {
             width: 70px;
             height: 70px;
-            background: rgba(67, 97, 238, 0.1);
+            background: rgba(187, 134, 252, 0.1);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 20px;
             font-size: 30px;
-            color: var(--primary);
+            color: var(--accent-purple);
+            border: 1px solid rgba(187, 134, 252, 0.2);
           }
           
           .feature-card h3 {
             font-size: 1.5rem;
             margin-bottom: 15px;
-            color: var(--dark);
+            color: var(--accent-teal);
+          }
+          
+          .feature-card p {
+            color: var(--text-light);
+            opacity: 0.8;
           }
           
           /* Stats Section */
           .stats-section {
-            background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
+            background: linear-gradient(135deg, var(--secondary-dark) 0%, #252525 100%);
             padding: 80px 0;
             border-radius: 16px;
-            color: white;
+            color: var(--text-light);
             margin: 80px 0;
             text-align: center;
+            border: 1px solid #2d2d2d;
           }
           
           .stats-grid {
@@ -149,6 +155,7 @@ export const About = () => {
             font-size: 3rem;
             font-weight: 800;
             margin-bottom: 10px;
+            color: var(--accent-purple);
           }
           
           .stat-label {
@@ -168,22 +175,25 @@ export const About = () => {
           }
           
           .team-member {
-            background: white;
+            background: linear-gradient(145deg, var(--card-surface) 0%, #252525 100%);
             border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
             transition: all 0.3s ease;
+            border: 1px solid #2d2d2d;
           }
           
           .team-member:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-color: var(--accent-teal);
           }
           
           .member-img {
             width: 100%;
             height: 250px;
             object-fit: cover;
+            filter: grayscale(30%);
           }
           
           .member-info {
@@ -194,22 +204,28 @@ export const About = () => {
           .member-name {
             font-size: 1.4rem;
             margin-bottom: 5px;
-            color: var(--dark);
+            color: var(--accent-teal);
           }
           
           .member-role {
-            color: var(--primary);
+            color: var(--accent-purple);
             margin-bottom: 15px;
             font-weight: 500;
           }
           
+          .member-info p {
+            color: var(--text-light);
+            opacity: 0.8;
+          }
+          
           /* CTA Section */
           .cta-section {
-            background: var(--light);
+            background: linear-gradient(145deg, var(--secondary-dark) 0%, #252525 100%);
             padding: 80px 0;
             border-radius: 16px;
             text-align: center;
             margin: 80px 0;
+            border: 1px solid #2d2d2d;
           }
           
           .cta-content {
@@ -220,19 +236,19 @@ export const About = () => {
           .cta-title {
             font-size: 2.5rem;
             margin-bottom: 20px;
-            color: var(--dark);
+            color: var(--accent-teal);
           }
           
           .cta-text {
             font-size: 1.2rem;
             margin-bottom: 30px;
-            color: var(--gray);
+            opacity: 0.9;
           }
           
           .cta-button {
             display: inline-block;
-            background: var(--primary);
-            color: white;
+            background: var(--accent-purple);
+            color: var(--primary-dark);
             padding: 15px 35px;
             border-radius: 50px;
             text-decoration: none;
@@ -241,21 +257,22 @@ export const About = () => {
             transition: all 0.3s ease;
             border: none;
             cursor: pointer;
-            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
+            box-shadow: 0 5px 15px rgba(187, 134, 252, 0.3);
           }
           
           .cta-button:hover {
-            background: var(--secondary);
+            background: var(--accent-teal);
             transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(67, 97, 238, 0.4);
+            box-shadow: 0 8px 20px rgba(3, 218, 198, 0.4);
           }
           
           /* Footer */
           .about-footer {
             text-align: center;
             padding: 40px 0;
-            color: var(--gray);
-            border-top: 1px solid var(--light-gray);
+            color: var(--text-light);
+            opacity: 0.7;
+            border-top: 1px solid #2d2d2d;
           }
           
           /* Responsive Design */

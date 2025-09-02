@@ -9,6 +9,9 @@ import { AddTeacher } from "./pages/AddTeacher"
 import { EditTeacherForm } from "./component/UI/EditTeacherForm"
 import { Register } from "./pages/Register"
 import { Login } from "./pages/Login"
+import { Profile } from "./component/UI/Profile"
+import { Settings} from "./component/UI/Settings"
+import "./App.css"
 export const App=()=>{
   const router=createBrowserRouter([
     {
@@ -49,6 +52,14 @@ export const App=()=>{
     {
       path:"/login",
       element:<Login />
+    },
+    {
+      path:"/Profile",
+      element:<Profile />
+    },
+    {
+      path:"/Settings",
+      element:<Settings />
     }
   ])
   return(
