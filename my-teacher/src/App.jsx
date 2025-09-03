@@ -10,61 +10,67 @@ import { EditTeacherForm } from "./component/UI/EditTeacherForm"
 import { Register } from "./pages/Register"
 import { Login } from "./pages/Login"
 import { Profile } from "./component/UI/Profile"
-import { Settings} from "./component/UI/Settings"
+import { Settings } from "./component/UI/Settings"
 import "./App.css"
-export const App=()=>{
-  const router=createBrowserRouter([
+import { TeachersPage } from "./pages/TeacherPage"
+export const App = () => {
+  const router = createBrowserRouter([
     {
-      path:"/",
-      element:<Layout/>,
-      errorElement:<ErrorPage/>,
-      children:[
+      path: "/",
+      element: <Layout />,
+      errorElement: <ErrorPage />,
+      children: [
         {
-          path:'/',
-          element:<Home/>
-        },
-         {
-          path:'/about',
-          element:<About/>
+          path: '/',
+          element: <Home />
         },
         {
-          path:'/contact',
-          element:<Contact/>
+          path: '/about',
+          element: <About />
         },
         {
-          path:"/add-teacher",
-          element:<AddTeacher />
+          path: '/contact',
+          element: <Contact />
         },
         {
-          path:"/edit-teacher/:id",
-          element:<EditTeacherForm />
+          path: "/add-teacher",
+          element: <AddTeacher />
+        },
+        {
+          path: "/edit-teacher/:id",
+          element: <EditTeacherForm />
         }
-      
+        ,
+        {
+          path: "/Profile",
+          element: <Profile />
+        },
+        {
+          path: "/Settings",
+          element: <Settings />
+        },
+        {
+          path: "/teachers",
+          element: <TeachersPage />
+        },
+
 
       ]
 
 
     },
     {
-     path:"/register",
-     element:<Register /> 
+      path: "/register",
+      element: <Register />
     },
     {
-      path:"/login",
-      element:<Login />
-    },
-    {
-      path:"/Profile",
-      element:<Profile />
-    },
-    {
-      path:"/Settings",
-      element:<Settings />
+      path: "/login",
+      element: <Login />
     }
   ])
-  return(
+  return (
     <>
-       <RouterProvider router={router}/>
+      <RouterProvider router={router} />
     </>
   )
 }
